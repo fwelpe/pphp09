@@ -1,0 +1,65 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <form id="form" onsubmit="onSubmit();">
+            <input type="text" id="v1" placeholder="First value">
+            <select id = "opt">
+                <option value = "plus" selected>+</option>
+                <option value = "minus">-</option>
+                <option value = "mult">*</option>
+                <option value = "divd">/</option>
+                <option value = "modu">%</option>
+            </select>
+            <input type="text" id="v2" placeholder="Second value">
+            <input type="submit" value="Try me!">
+          </form>
+        <script type="text/javascript">
+            setInterval("alert('Please, use me...')", 30000);
+            
+            const onSubmit = () => {
+                let v1_el = document.getElementById("v1").value;
+                let v2_el = document.getElementById("v2").value;
+                let opt = document.getElementById("opt").value;
+
+                let v1 = Number(v1_el);
+                let v2 = Number(v2_el);
+
+                if (isNaN(v1) || isNaN(v2) || !Number.isInteger(v1) || !Number.isInteger(v2))
+                    erroring();
+                else if (!(v1 >= 0 && v2 >= 0))
+                    erroring();
+                else {
+                    if ((opt === "divd" || opt === "modu") && v2 === 0)
+                        over9000();
+                    else {
+                        if (opt === "plus")
+                            result(v1 + v2);
+                        else if (opt === "minus")
+                            result(v1 - v2);
+                        else if (opt === "mult")
+                            result(v1 * v2);
+                        else if (opt === "modu")
+                            result(v1 % v2);
+                        else if (opt === "divd")
+                            result(v1 / v2);
+                    }
+                }
+            }
+            
+            const result = (num) => {
+                console.log(num);
+                alert(num);
+            };
+
+            const erroring = () => {
+                alert('Error :(');
+            }
+
+            const over9000 = () => {
+                console.log('It’s over 9000!');
+                alert('It’s over 9000!');
+            }
+        </script>
+    </body>
+</html>
